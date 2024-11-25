@@ -1,5 +1,6 @@
 package pl.danielstrielnikow.security.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,12 +20,20 @@ class SecurityConfig {
                 .requestMatchers("/register", "/confirmation").permitAll()
                 .requestMatchers("/secured", "/change-password").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .anyRequest().authenticated()
         );
         http.formLogin(login -> login.loginPage("/login").permitAll());
         http.logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
                 .logoutSuccessUrl("/")
+        );
+        // Wyświetlenie konsoli H2
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(PathRequest.toH2Console()));
+        http.headers(
+                config -> config.frameOptions(
+                        options -> options.sameOrigin()
+                )
         );
 
         return http.build();
