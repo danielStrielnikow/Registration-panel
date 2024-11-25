@@ -64,6 +64,14 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public void changeCurrentUserPassword(String newPassword) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userRepository.findByEmail(currentUsername).orElseThrow();
+        String newPasswordHash = passwordEncoder.encode(newPassword);
+        currentUser.setPassword(newPasswordHash);
+    }
+
     private boolean isCurrentUserAdmin() {
         return SecurityContextHolder.getContext()
                 .getAuthentication()

@@ -21,6 +21,6 @@ public class SecuredController {
         String welcomeMessage = welcomeMessageService.getWelcomeMessage(lang);
         model.addAttribute("lang", lang);
         model.addAttribute("welcomeMessage", welcomeMessage);
-        return "index";
+        return "secured";
     }
 }
