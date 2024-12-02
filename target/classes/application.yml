@@ -1,15 +1,15 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:test
+  profiles:
+    active: dev  # Wskazuje, który profil jest aktywny (w tym przypadku "dev")
   jpa:
-    hibernate:
-      ddl-auto: none
     show-sql: true
     defer-datasource-initialization: true
-  h2:
-    console:
-      enabled: false
-      path: /h2-console
-server:
-  address: 0.0.0.0
-  port: 8080
+  liquibase:
+    change-log: classpath:db/master.xml
+    enabled: false
+  sql:
+    init:
+      mode: never
+#server:
+#  address: 0.0.0.0
+#  port: 8080
