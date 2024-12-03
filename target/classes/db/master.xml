@@ -7,6 +7,6 @@
 
     <include file="0001_init.xml" relativeToChangelogFile="true" />
 
-    <include context="dev" file="testdata.sql" relativeToChangelogFile="true" />
-
+    <!-- Dodanie danych testowych tylko w kontekście 'dev' -->
+    <include context="dev" file="test-data.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>

@@ -55,12 +55,12 @@ public class UserService {
         String passwordHash = passwordEncoder.encode(registration.getPassword());
         user.setPassword(passwordHash);
         Optional<UserRole> userRole = userRoleRepository.findByName(USER_ROLE);
-        userRole.ifPresentOrElse(
-                role -> user.getRoles().add(role),
-                () -> {
-                    throw new NoSuchElementException();
-                }
-        );
+//        userRole.ifPresentOrElse(
+//                role -> user.getRoles().add(role),
+//                () -> {
+//                    throw new NoSuchElementException();
+//                }
+        ;
         userRepository.save(user);
     }
 

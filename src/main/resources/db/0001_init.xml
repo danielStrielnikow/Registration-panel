@@ -9,7 +9,7 @@
     <changeSet id="0001_init" author="daniel">
 
         <createTable tableName="application_user">
-            <column name="id" type="BIGINT">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="first_name" type="VARCHAR(50)">
@@ -27,7 +27,7 @@
         </createTable>
 
         <createTable tableName="user_role">
-            <column name="id" type="BIGINT">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="VARCHAR(30)">
@@ -39,7 +39,7 @@
         </createTable>
 
         <createTable tableName="user_roles">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="bigint">
@@ -55,14 +55,19 @@
                 baseColumnNames="user_id"
                 constraintName="user_roles_ibfk_1"
                 referencedTableName="application_user"
-                referencedColumnNames="id"/>
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE" />
+
 
         <addForeignKeyConstraint
                 baseTableName="user_roles"
                 baseColumnNames="role_id"
                 constraintName="user_roles_ibfk_2"
                 referencedTableName="user_role"
-                referencedColumnNames="id"/>
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE" />
     </changeSet>
 
 </databaseChangeLog>

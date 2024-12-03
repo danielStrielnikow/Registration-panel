@@ -30,4 +30,6 @@ class AdminController {
         userService.deleteUserByEmail(email);
         return "redirect:/admin";
     }
+
+
 }

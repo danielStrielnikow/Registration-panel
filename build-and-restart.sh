@@ -8,5 +8,5 @@ docker run  \
   -v /Users/daniel/IdeaProjects/Projects/mysql/:/var/lib/mysql \
   --name security-database \
   mysql:latest
-docker run  -p 0.0.0.0:8080:8080 --name security security
+docker run  -p 0.0.0.0:8080:8080 --name -e SPRING_PROFILES_ACTIVE=prod security security
 

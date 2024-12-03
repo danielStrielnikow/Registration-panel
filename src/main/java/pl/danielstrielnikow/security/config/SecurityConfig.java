@@ -52,4 +52,7 @@ class SecurityConfig {
     public H2ConsoleProperties h2ConsoleProperties() {
         return new H2ConsoleProperties();
     }
+
+
+
 }
